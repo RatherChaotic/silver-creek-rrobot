@@ -44,13 +44,16 @@ class RRobot(wpilib.TimedRobot):
         # TEST THIS LATER (MOVEMENT ADJUSTMENTS)
         # drive motors
         right_y = self.controller.getRightY()
-        trigger = self.controller.getRightTriggerAxis()
+        r_trigger = self.controller.getRightTriggerAxis()
+        l_trigger = self.controller.getLeftTriggerAxis()
 
 
 
         # Makes the bot move according to how much the trigger is pressed and turn at about the same speed it'll turn whilst moving
 
-        if trigger > 0:
-            self.drive.curvatureDrive(-1 * trigger, self.controller.getLeftX(), False)
+        if r_trigger > 0:
+            self.drive.curvatureDrive(-1 * r_trigger, self.controller.getLeftX(), False)
+        elif l_trigger > 0:
+            self.drive.curvatureDrive(l_trigger, self.controller.getLeftX(), False)
         else:
             self.drive.curvatureDrive(0, 1/2 * self.controller.getLeftX(), True)
