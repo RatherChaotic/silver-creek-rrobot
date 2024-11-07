@@ -39,7 +39,6 @@ class PhysicsEngine:
 
         self.physics_controller = physics_controller
 
-        print("TODO: modify simulation for my robot")
 
 
         # Change these parameters to fit your robot!

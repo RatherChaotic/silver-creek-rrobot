@@ -5,13 +5,13 @@
   "MainWindow": {
     "GLOBAL": {
       "fps": "120",
-      "height": "958",
+      "height": "951",
       "maximized": "0",
       "style": "1",
       "userScale": "2",
       "width": "1611",
-      "xpos": "-164",
-      "ypos": "168"
+      "xpos": "870",
+      "ypos": "88"
     }
   },
   "Table": {
@@ -25,33 +25,38 @@
   "Window": {
     "###/SmartDashboard/Elevator Sim": {
       "Collapsed": "0",
-      "Pos": "209,259",
+      "Pos": "527,109",
       "Size": "200,200"
     },
     "###/SmartDashboard/Field": {
       "Collapsed": "0",
-      "Pos": "684,251",
+      "Pos": "226,454",
       "Size": "727,534"
     },
     "###FMS": {
       "Collapsed": "0",
-      "Pos": "5,540",
+      "Pos": "32,531",
       "Size": "169,184"
     },
     "###Joysticks": {
       "Collapsed": "0",
-      "Pos": "176,248",
-      "Size": "796,240"
+      "Pos": "137,167",
+      "Size": "796,175"
     },
     "###Keyboard 0 Settings": {
       "Collapsed": "0",
-      "Pos": "10,50",
+      "Pos": "120,305",
+      "Size": "300,390"
+    },
+    "###Keyboard 1 Settings": {
+      "Collapsed": "0",
+      "Pos": "320,50",
       "Size": "300,560"
     },
     "###NetworkTables": {
       "Collapsed": "0",
-      "Pos": "249,694",
-      "Size": "750,185"
+      "Pos": "249,417",
+      "Size": "750,462"
     },
     "###NetworkTables Info": {
       "Collapsed": "0",
@@ -75,7 +80,7 @@
     },
     "###System Joysticks": {
       "Collapsed": "0",
-      "Pos": "12,303",
+      "Pos": "71,396",
       "Size": "192,218"
     },
     "###Timing": {

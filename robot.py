@@ -17,7 +17,9 @@ class RRobot(wpilib.TimedRobot):
 
 
         #Joystick Declaration
-        self.joystick = wpilib.XboxController(0)
+        self.controller = wpilib.XboxController(0)
+        self.left_y = self.controller.getLeftY()
+        self.left_x = self.controller.getLeftX()
 
         #Motor Declaration
         self.lf_motor = wpilib.PWMSparkMax(1)
@@ -35,13 +37,21 @@ class RRobot(wpilib.TimedRobot):
     def robotInit(self):
         return None
 
+
+    def teleopInit(self):
+        return None
+
     def teleopPeriodic(self):
         """Called when operation control mode is enabled"""
         # TEST THIS LATER (MOVEMENT ADJUSTMENTS)
         # drive motors
-        right_y = self.joystick.getRightY()
-        left_y = self.joystick.getLeftY()
+        right_y = self.controller.getRightY()
+        left_y = self.controller.getLeftY()
         # print(f"RightY: {RightY} - LeftY: {LeftY}")
+        old = str(self.left_y) + " : " + str(self.left_x)
+        new = str(self.left_y) + " : " + str(self.left_x)
+        if new != old:
+            print(new)
 
         # exponential movement
         if right_y < 0:
@@ -60,6 +70,5 @@ class RRobot(wpilib.TimedRobot):
             left_y = left_y * 0.66
         elif (0.1 > left_y > -0.1) and (right_y >= 0.5 or right_y <= -0.5):
             right_y = right_y * 0.66
-        print(f"RightY: {right_y} - LeftY: {left_y}")
 
         self.drive.tankDrive(right_y, left_y)
