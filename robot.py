@@ -29,6 +29,8 @@ class RRobot(wpilib.TimedRobot):
 
     def teleopInit(self):
         return None
+    def robotPeriodic(self):
+        return None
 
     def trigger_drive(self):
 

@@ -30,7 +30,7 @@
     },
     "###/SmartDashboard/Field": {
       "Collapsed": "0",
-      "Pos": "172,286",
+      "Pos": "426,458",
       "Size": "727,534"
     },
     "###FMS": {
@@ -40,7 +40,7 @@
     },
     "###Joysticks": {
       "Collapsed": "0",
-      "Pos": "907,334",
+      "Pos": "478,180",
       "Size": "796,240"
     },
     "###Keyboard 0 Settings": {
@@ -55,7 +55,7 @@
     },
     "###NetworkTables": {
       "Collapsed": "0",
-      "Pos": "833,284",
+      "Pos": "254,208",
       "Size": "750,462"
     },
     "###NetworkTables Info": {
