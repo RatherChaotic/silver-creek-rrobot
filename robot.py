@@ -1,20 +1,13 @@
-import rev, wpilib, time
+import rev, wpilib, time, os,util
 import wpilib.drive
-from halsim_gui.main import logger
 
-kY = 4 #Y Button
-kX = 3 #X Button
-kB = 2 #B Button
-kA = 1 #A Button
-kLB = 5 #LB Button
-kRB = 6 #RB Button
-kBack = 7 #Back Button
-kStart = 8 #Start Button
+config = util.load_config("config.json")
+
+
 
 class RRobot(wpilib.TimedRobot):
     def __init__(self):
         super().__init__()
-
 
         #Joystick Declaration
         self.controller = wpilib.XboxController(0)
@@ -30,24 +23,18 @@ class RRobot(wpilib.TimedRobot):
         self.r_motor = wpilib.MotorControllerGroup(self.rf_motor, self.rr_motor)
         self.drive = wpilib.drive.DifferentialDrive(self.l_motor, self.r_motor)
 
-
-
     def robotInit(self):
         return None
-
 
     def teleopInit(self):
         return None
 
-    def teleopPeriodic(self):
-        """Called when operation control mode is enabled"""
-        # TEST THIS LATER (MOVEMENT ADJUSTMENTS)
-        # drive motors
-        right_y = self.controller.getRightY()
+    def trigger_drive(self):
+
+        # Trigger definitions
+
         r_trigger = self.controller.getRightTriggerAxis()
         l_trigger = self.controller.getLeftTriggerAxis()
-
-
 
         # Makes the bot move according to how much the trigger is pressed and turn at about the same speed it'll turn whilst moving
 
@@ -56,4 +43,44 @@ class RRobot(wpilib.TimedRobot):
         elif l_trigger > 0:
             self.drive.curvatureDrive(l_trigger, self.controller.getLeftX(), False)
         else:
-            self.drive.curvatureDrive(0, 1/2 * self.controller.getLeftX(), True)
+            self.drive.curvatureDrive(0, 1 / 2 * self.controller.getLeftX(), True)
+
+    def axis_drive(self):
+
+        # Makes the bot move with only the left stick
+
+        lx = self.controller.getLeftX()
+        ly = self.controller.getLeftY()
+        self.drive.curvatureDrive(ly,1/2 * lx,True)
+
+    def dual_axis_drive(self):
+
+        # Makes the bot accelerate with left stick and turn with the right stick
+
+        ly = self.controller.getLeftY()
+        rx = self.controller.getRightX()
+        self.drive.curvatureDrive(ly,1/2 * rx,True)
+
+    def true_dual_axis_drive(self):
+
+        # Original movement each stick controls a side of motors
+
+        ly = self.controller.getLeftY()
+        ry = self.controller.getRightY()
+        self.drive.tankDrive(ly,ry)
+
+
+
+    def teleopPeriodic(self):
+        """Called when operation control mode is enabled"""
+        if config["control_mode"] == 1:
+            RRobot.trigger_drive(self)
+        elif config["control_mode"] == 2:
+            RRobot.axis_drive(self)
+        elif config["control_mode"] == 3:
+            RRobot.dual_axis_drive(self)
+        elif config["control_mode"] == 4:
+            RRobot.true_dual_axis_drive(self)
+        else:
+            return None
+
