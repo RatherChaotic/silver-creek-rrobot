@@ -6,12 +6,12 @@
     "GLOBAL": {
       "fps": "120",
       "height": "951",
-      "maximized": "0",
+      "maximized": "1",
       "style": "1",
       "userScale": "2",
       "width": "1611",
-      "xpos": "870",
-      "ypos": "88"
+      "xpos": "0",
+      "ypos": "23"
     }
   },
   "Table": {
@@ -30,13 +30,13 @@
     },
     "###/SmartDashboard/Field": {
       "Collapsed": "0",
-      "Pos": "226,454",
+      "Pos": "974,394",
       "Size": "727,534"
     },
     "###FMS": {
       "Collapsed": "0",
       "Pos": "32,531",
-      "Size": "169,184"
+      "Size": "283,140"
     },
     "###Joysticks": {
       "Collapsed": "0",
@@ -55,7 +55,7 @@
     },
     "###NetworkTables": {
       "Collapsed": "0",
-      "Pos": "249,417",
+      "Pos": "833,284",
       "Size": "750,462"
     },
     "###NetworkTables Info": {
