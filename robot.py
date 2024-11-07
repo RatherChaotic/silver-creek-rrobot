@@ -1,7 +1,8 @@
-import rev, wpilib, time, os,util
+import wpilib
+from util import util
 import wpilib.drive
 
-config = util.load_config("config.json")
+config = util.load_config("util/config.json")
 
 
 
