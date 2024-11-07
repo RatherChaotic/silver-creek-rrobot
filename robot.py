@@ -1,6 +1,6 @@
 import rev, wpilib, time
 import wpilib.drive
-
+from halsim_gui.main import logger
 
 kY = 4 #Y Button
 kX = 3 #X Button
@@ -18,14 +18,12 @@ class RRobot(wpilib.TimedRobot):
 
         #Joystick Declaration
         self.controller = wpilib.XboxController(0)
-        self.left_y = self.controller.getLeftY()
-        self.left_x = self.controller.getLeftX()
 
         #Motor Declaration
         self.lf_motor = wpilib.PWMSparkMax(1)
-        self.lr_motor = rev.CANSparkMax(3, rev.CANSparkLowLevel.MotorType.kBrushed)
+        self.lr_motor = wpilib.PWMSparkMax(3)
         self.rf_motor = wpilib.PWMSparkMax(2)
-        self.rr_motor = rev.CANSparkMax(2, rev.CANSparkLowLevel.MotorType.kBrushed)
+        self.rr_motor = wpilib.PWMSparkMax(4)
 
         self.l_motor = wpilib.MotorControllerGroup(self.lf_motor, self.lr_motor)
         self.l_motor.setInverted(True)
@@ -46,29 +44,13 @@ class RRobot(wpilib.TimedRobot):
         # TEST THIS LATER (MOVEMENT ADJUSTMENTS)
         # drive motors
         right_y = self.controller.getRightY()
-        left_y = self.controller.getLeftY()
-        # print(f"RightY: {RightY} - LeftY: {LeftY}")
-        old = str(self.left_y) + " : " + str(self.left_x)
-        new = str(self.left_y) + " : " + str(self.left_x)
-        if new != old:
-            print(new)
+        trigger = self.controller.getRightTriggerAxis()
 
-        # exponential movement
-        if right_y < 0:
-            right_y = (right_y ** 4) * -1
+
+
+        # Makes the bot move according to how much the trigger is pressed and turn at about the same speed it'll turn whilst moving
+
+        if trigger > 0:
+            self.drive.curvatureDrive(-1 * trigger, self.controller.getLeftX(), False)
         else:
-            right_y = (right_y ** 4)
-
-        if left_y < 0:
-            left_y = (left_y ** 4) * -1
-        else:
-            left_y = (left_y ** 4)
-        right_y = right_y * .9
-        left_y = left_y * .9
-        # this makes it turn slower
-        if (0.1 > right_y > -0.1) and (left_y >= 0.5 or left_y <= -0.5):
-            left_y = left_y * 0.66
-        elif (0.1 > left_y > -0.1) and (right_y >= 0.5 or right_y <= -0.5):
-            right_y = right_y * 0.66
-
-        self.drive.tankDrive(right_y, left_y)
+            self.drive.curvatureDrive(0, 1/2 * self.controller.getLeftX(), True)

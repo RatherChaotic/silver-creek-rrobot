@@ -55,6 +55,9 @@
       },
       "SmartDashboard": {
         "Field": {
+          "double[]##v_/SmartDashboard/Field/Robot": {
+            "open": true
+          },
           "open": true
         },
         "open": true
