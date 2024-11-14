@@ -1,6 +1,7 @@
 import wpilib
 from util import util
 import wpilib.drive
+import rev
 
 config = util.load_config("util/config.json")
 
@@ -9,15 +10,16 @@ config = util.load_config("util/config.json")
 class RRobot(wpilib.TimedRobot):
     def __init__(self):
         super().__init__()
+        self.timer = wpilib.Timer()
 
         #Joystick Declaration
         self.controller = wpilib.XboxController(0)
 
         #Motor Declaration
-        self.lf_motor = wpilib.PWMSparkMax(1)
-        self.lr_motor = wpilib.PWMSparkMax(3)
-        self.rf_motor = wpilib.PWMSparkMax(2)
-        self.rr_motor = wpilib.PWMSparkMax(4)
+        self.lf_motor = rev.CANSparkMax(4,rev.CANSparkMax.MotorType.kBrushless)
+        self.lr_motor = rev.CANSparkMax(3,rev.CANSparkMax.MotorType.kBrushless)
+        self.rf_motor = rev.CANSparkMax(9,rev.CANSparkMax.MotorType.kBrushless)
+        self.rr_motor = rev.CANSparkMax(2,rev.CANSparkMax.MotorType.kBrushless)
 
         self.l_motor = wpilib.MotorControllerGroup(self.lf_motor, self.lr_motor)
         self.l_motor.setInverted(True)
