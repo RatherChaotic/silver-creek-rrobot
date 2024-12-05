@@ -45,8 +45,8 @@ class PhysicsEngine:
 
         # Motors
 
-        self.l_motor = wpilib.simulation.PWMSim(robot.lf_motor.getChannel())
-        self.r_motor = wpilib.simulation.PWMSim(robot.rf_motor.getChannel())
+        self.l_motor = wpilib.simulation.PWMSim(1)
+        self.r_motor = wpilib.simulation.PWMSim(1)
 
         bumper_width = 3.25 * units.inch
 
